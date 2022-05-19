@@ -1,0 +1,20 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap'); /*Para el google fonts titulo*/
+
+@import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap'); /*Para las listas*/
+
+/* body{
+    height:300px; 
+    width: 200px;
+    background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com.mx%2Fpin%2F270004940129488956%2F&psig=AOvVaw1RywdUjv7yvDvq8OIExQtn&ust=1653041061000000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCJiq_dyo6_cCFQAAAAAdAAAAABAU);
+    background-repeat: repeat;
+    background-position: center;
+} */
+
+h1{
+    font-family: 'Staatliches', cursive;
+    font-size: 100px;
+}
+
+

@@ -1,0 +1,50 @@
+<!-- <div *ngIf="videogame"> -->
+
+    <div class="container rounded d-flex flex-column justify-content-center align-items-center" id="contenedor">
+        <form [formGroup]="videogameForm" (ngSubmit)="onFormSubmit()">
+            <div class="fs-4">
+                Name:
+                <input type="text" [formControlName]="'name'" class="form-label">
+                <label *ngIf="videogameForm.controls['name'].invalid" [ngClass] = "'error'"> Name required with min 3 chars and max 15 character. </label>
+            </div>
+            <div class="fs-4">
+                Mode:
+                <input type="text" [formControlName]="'mode'" class="form-label">
+                <label *ngIf="videogameForm.controls['mode'].invalid" [ngClass] = "'error'"> Language required with min 3 chars and max 15 character. </label>
+            </div>
+            <div class="fs-4">
+                <label for="enginesDropdown">Choose an engine:</label>
+                <select class="form-select mb-3" name="enginesDropdown" [formControlName]="'engineId'">
+                    <option *ngFor="let engine of engineList" [value]="engine.id">{{ engine.name }}</option>
+                </select>
+                <label *ngIf="videogameForm.controls['engineId'].invalid" [ngClass] = "'error'"> Engine required. </label>
+            </div>
+            <div class="fs-4">
+                <label for="studiosDropdown">Choose an studio:</label>
+                <!-- <select name="studiosDropdown" [formControlName]="'developmentStudios'">
+                    <option *ngFor="let studio of studioList" [value]="studio.id">{{ studio.name }}</option>
+                </select> -->
+                <ng-select [items]="studioList" bindLabel="name" bindValue="id" [multiple]="true" placeholder="select studio" formControlName="developmentStudioIds"></ng-select>
+                <label *ngIf="videogameForm.controls['developmentStudioIds'].invalid" [ngClass] = "'error'"> Studio required. </label>
+            </div>
+            <div class="fs-4">
+                <label for="genresDropdown">Choose an genre:</label>
+                <!-- <select name="genresDropdown" [formControlName]="'genres'">
+                    <option *ngFor="let genre of genreList" [value]="genre.id">{{ genre.name }}</option>
+                </select> -->
+                <ng-select [items]="genreList" bindLabel="name" bindValue="id" [multiple]="true" placeholder="select genre" formControlName="genreIds"></ng-select>
+                <label *ngIf="videogameForm.controls['genreIds'].invalid" [ngClass] = "'error'"> Genre required. </label>
+            </div>
+            <div class="d-flex justify-content-center pt-5">
+                <button type="submit" class="btn btn-dark fs-6 me-2">Submit</button>
+                <button type="button" (click)="goBack()" class="btn btn-dark fs-6">Go back</button>
+            </div>
+        </form>
+    </div>
+
+<!-- </div> -->
+
+
+
+
+

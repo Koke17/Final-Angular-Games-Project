@@ -1,0 +1,29 @@
+<div class="container rounded d-flex flex-column justify-content-center align-items-center" id="contenedor">
+    <div>
+        <app-studio-search></app-studio-search>
+    </div>
+
+    <ul>
+        <li *ngFor="let studio of studios">
+            <a routerLink="/studios/{{studio.id}}">
+                {{studio.name}}
+            </a>
+            <button class="btn btn-danger rounded-pill mb-2" type="button" title="delete studio" (click)="delete(studio)">
+                X
+            </button>
+        </li>
+    </ul>
+
+    <div>
+        <button class="btn btn-light fs-5" routerLink="/studios/new">
+            + ADD NEW studio
+        </button>
+    </div>
+
+    <div class="p-5"><button class="btn btn-dark fs-6" type="button" (click)="goBack()">Go back</button></div>
+</div>
+
+
+
+
+

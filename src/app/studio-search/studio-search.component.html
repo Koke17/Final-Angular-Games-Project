@@ -1,0 +1,12 @@
+<div id="search-component">
+    <label class="fs-5 fw-bold me-2" for="search-box">Studio Search: </label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  
+    <ul class="search-result">
+      <li *ngFor="let studio of studios$ | async" >
+        <a routerLink="/studio/{{studio.id}}">
+          {{studio.name}}
+        </a>
+      </li>
+    </ul>
+</div>

@@ -1,0 +1,17 @@
+<!-- <div *ngIf="genre"> -->
+
+    <div class="container rounded d-flex flex-column justify-content-center align-items-center" id="contenedor">
+        <form [formGroup]="genreForm" (ngSubmit)="onFormSubmit()">
+            <div class="fs-4">
+                Name:
+                <input type="text" [formControlName]="'name'" class="form-label">
+                <label *ngIf="genreForm.controls['name'].invalid" [ngClass] = "'error'"> Name required with min 3 chars and max 15 character. </label>
+            </div>
+            <div class="d-flex justify-content-center pt-5">
+                <button type="submit" class="btn btn-dark fs-6 me-2">Submit</button>
+                <button type="button" (click)="goBack()" class="btn btn-dark fs-6">Go back</button>
+            </div>
+        </form>
+    </div>
+
+<!-- </div> -->

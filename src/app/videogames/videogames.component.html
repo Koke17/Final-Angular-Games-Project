@@ -1,0 +1,33 @@
+<div class="container rounded d-flex flex-column justify-content-center align-items-center" id="contenedor">
+    
+    <div>
+        <app-videogame-search></app-videogame-search>
+    </div>
+    
+    <ul>
+        <li *ngFor="let videogame of videogames">
+            <a routerLink="/videogames/{{videogame.id}}">
+                {{videogame.name}}
+            </a>
+            <button class="btn btn-danger rounded-pill mb-2" type="button" title="delete videogame" (click)="delete(videogame)">
+                X
+            </button>
+        </li>
+    </ul>
+
+    <div>
+        <button class="btn btn-light fs-5" routerLink="/videogames/new">
+            + ADD NEW VIDEOGAME
+        </button>
+    </div>
+
+    <div class="p-5"><button class="btn btn-dark fs-6" type="button" (click)="goBack()">Go back</button></div>
+
+</div>
+
+
+
+
+
+
+

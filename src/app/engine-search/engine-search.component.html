@@ -1,0 +1,12 @@
+<div id="search-component">
+    <label class="fs-5 fw-bold me-2" for="search-box">Engine Search: </label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  
+    <ul class="search-result">
+      <li *ngFor="let engine of engines$ | async" >
+        <a routerLink="/engine/{{engine.id}}">
+          {{engine.name}}
+        </a>
+      </li>
+    </ul>
+</div>

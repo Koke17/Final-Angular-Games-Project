@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+div#contenedor{
+    background-color: rgb(32, 136, 92);
+    height: 80vh;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    font-size: xx-large;
+}
+
+li{
+    list-style:square;
+    font-family: 'Skranji';
+}

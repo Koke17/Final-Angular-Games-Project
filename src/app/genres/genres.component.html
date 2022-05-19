@@ -1,0 +1,28 @@
+<div class="container rounded d-flex flex-column justify-content-center align-items-center" id="contenedor">
+
+    <div>
+        <app-genre-search></app-genre-search>
+    </div>
+
+    <ul>
+        <li *ngFor="let genre of genres">
+            <a routerLink="/genres/{{genre.id}}">
+                {{genre.name}}
+            </a>
+            <button class="btn btn-danger rounded-pill mb-2" type="button" title="delete genre" (click)="delete(genre)">
+                X
+            </button>
+        </li>
+    </ul>
+
+    <button class="btn btn-light fs-5" routerLink="/genres/new">
+        + ADD NEW GENRE
+    </button>
+    
+    <div class="p-5"><button class="btn btn-dark fs-6" type="button" (click)="goBack()">Go back</button></div>
+
+</div>
+
+
+
+

@@ -1,0 +1,30 @@
+<div class="container rounded d-flex flex-column justify-content-center align-items-center" id="contenedor">
+
+    <div>
+        <app-engine-search></app-engine-search>
+    </div>
+
+    <ul>
+        <li *ngFor="let engine of engines">
+            <a routerLink="/engines/{{engine.id}}">
+                {{engine.name}}
+            </a>
+            <button class="btn btn-danger rounded-pill mb-2" type="button" title="delete engine" (click)="delete(engine)">
+                X
+            </button>
+        </li>
+    </ul>
+
+    <div>
+        <button class="btn btn-light fs-5" routerLink="/engines/new">
+            + ADD NEW ENGINE
+        </button>
+    </div>
+
+    <div class="p-5"><button class="btn btn-dark fs-6" type="button" (click)="goBack()">Go back</button></div>
+</div>
+
+
+
+
+
