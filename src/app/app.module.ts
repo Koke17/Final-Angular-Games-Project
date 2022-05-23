@@ -26,6 +26,7 @@ import { NgSelectModule,NgOption } from "@ng-select/ng-select";
 import { StudioSearchComponent } from './studio-search/studio-search.component';
 import { EngineSearchComponent } from './engine-search/engine-search.component';
 import { VideogameSearchComponent } from './videogame-search/videogame-search.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 
@@ -45,6 +46,7 @@ import { VideogameSearchComponent } from './videogame-search/videogame-search.co
     StudioSearchComponent,
     EngineSearchComponent,
     VideogameSearchComponent,
+    UploadComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,4 +4,5 @@ export interface Engine {
     name: string;
     programmingLanguage: string;
     developmentStudioId: number;
+    imgPath: string;
 }

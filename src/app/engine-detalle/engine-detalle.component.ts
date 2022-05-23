@@ -25,10 +25,13 @@ export class EngineDetalleComponent implements OnInit {
   isNewengine = false;
   fecha: Date | undefined;
 
+  img: string | undefined;
+
   engineForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
     programmingLanguage: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(15)]),
     developmentStudioId: new FormControl('', [Validators.required]),
+    imgPath: new FormControl(''),
    });
 
   constructor(
@@ -67,6 +70,7 @@ export class EngineDetalleComponent implements OnInit {
     this.EngineService.getEngine(this.id)
       .subscribe(engine => { //Nos suscribimos porque queremos recibir la informacion de manera asincrona del Observable de tipo engine
         this.engine = engine;
+        this.img = engine.imgPath;
         this.inicializarForm(engine); //hacemos que se rellene el formulario con los datos del elemento
       });
   }
@@ -103,6 +107,21 @@ export class EngineDetalleComponent implements OnInit {
         .subscribe(() => this.goBack());
       
     }
+  }
+
+  setImgPath(event:any){
+    
+    this.engineForm.controls['imgPath'].setValue(this.transformPath(event.dbPath)); // Como event lo recogemos en la API como un objeto, tenemos que acceder a la propiedad dbPath, es por eso que no le pasamos a la funcion transformPath() solo el event, sino event.dbPath .
+
+    this.img = this.engineForm.controls['imgPath'].value;
+  }
+
+  transformPath(path:any){
+
+    let modifyString = "https://localhost:44338/"+ path?.toString().replace(/\\/g,'/');
+
+    return modifyString;
+
   }
 
 }

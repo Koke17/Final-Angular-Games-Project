@@ -21,10 +21,13 @@ export class StudioDetalleComponent implements OnInit {
   id: number = 0;
   isNewstudio = false;
 
+  img: string | undefined;
+
   studioForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
     employees: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
     foundationDate: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
+    imgPath: new FormControl(''),
    });
 
   constructor(
@@ -54,7 +57,10 @@ export class StudioDetalleComponent implements OnInit {
     this.studioService.getstudio(this.id)
       .subscribe(studio => { //Nos suscribimos porque queremos recibir la informacion de manera asincrona del Observable de tipo studio
         this.studio = studio;
+        this.img = studio.imgPath;
         this.inicializarForm(studio); //hacemos que se rellene el formulario con los datos del elemento
+        console.log(this.img);
+        
       });
   }
 
@@ -96,5 +102,20 @@ export class StudioDetalleComponent implements OnInit {
         .subscribe(() => this.goBack());
       
     }
+  }
+
+  setImgPath(event:any){
+    
+    this.studioForm.controls['imgPath'].setValue(this.transformPath(event.dbPath)); // Como event lo recogemos en la API como un objeto, tenemos que acceder a la propiedad dbPath, es por eso que no le pasamos a la funcion transformPath() solo el event, sino event.dbPath .
+
+    this.img = this.studioForm.controls['imgPath'].value;
+  }
+
+  transformPath(path:any){
+
+    let modifyString = "https://localhost:44338/"+ path?.toString().replace(/\\/g,'/');
+
+    return modifyString;
+
   }
 }

@@ -1,7 +1,11 @@
 <!-- <div *ngIf="engine"> -->
 
     <div class="container rounded d-flex flex-column justify-content-center align-items-center" id="contenedor">
-        <form [formGroup]="engineForm" (ngSubmit)="onFormSubmit()">
+
+        <img class="m-5" [src]="img ? img: engineForm.controls['imgPath'].value">    
+
+
+        <form class="m-5" [formGroup]="engineForm" (ngSubmit)="onFormSubmit()">
             <div class="fs-4">
                 Name:
                 <input type="text" [formControlName]="'name'">
@@ -19,6 +23,11 @@
                 </select>
                 <label *ngIf="engineForm.controls['developmentStudioId'].invalid" [ngClass] = "'error'"> Studio required. </label>
             </div>
+
+            <div>
+                <app-upload (onUploadFinished)="setImgPath($event)"></app-upload>
+            </div>
+
             <div class="d-flex justify-content-center pt-5">
                 <button type="submit" class="btn btn-dark fs-6 me-2">Submit</button>
                 <button type="button" (click)="goBack()" class="btn btn-dark fs-6">Go back</button>

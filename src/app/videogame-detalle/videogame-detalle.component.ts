@@ -13,8 +13,6 @@ import { GenreService } from "../genre.service";
 /*Para validar forms*/
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
-/*Importamos el multi-select*/
-import { IDropdownSettings } from "ng-multiselect-dropdown";
 
 
 
@@ -24,9 +22,6 @@ import { IDropdownSettings } from "ng-multiselect-dropdown";
   styleUrls: ['./videogame-detalle.component.css']
 })
 export class VideogameDetalleComponent implements OnInit {
-
-  dropdownList = [];
-  dropdownSettings: IDropdownSettings= {};
 
   videogame: Videogame | undefined; 
 
@@ -38,12 +33,16 @@ export class VideogameDetalleComponent implements OnInit {
   isNewvideogame = false;
   fecha: Date | undefined;
 
+  img: string | undefined;
+  nuevaImagen = false ;
+
   videogameForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     mode: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]),
     engineId: new FormControl('', [Validators.required]),
     developmentStudioIds: new FormControl('', [Validators.required]),
     genreIds: new FormControl('', [Validators.required]),
+    imgPath: new FormControl(''),
    });
 
   constructor(
@@ -60,6 +59,7 @@ export class VideogameDetalleComponent implements OnInit {
       return;
     }
     this.id = id;
+    
   }
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class VideogameDetalleComponent implements OnInit {
     }
     this.getEngines();
     this.getGenres();
-    this.getStudios();
+    this.getStudios();    
   }
 
   getEngines(){
@@ -101,9 +101,11 @@ export class VideogameDetalleComponent implements OnInit {
       .subscribe(videogame => { //Nos suscribimos porque queremos recibir la informacion de manera asincrona del Observable de tipo videogame
         console.log(videogame);
         this.videogame = videogame;
-        this.inicializarForm(videogame); //hacemos que se rellene el formulario con los datos del elemento
+        this.img = videogame.imgPath; //Guardamos el valor de la imagen
+        this.inicializarForm(videogame); //Hacemos que se rellene el formulario con los datos del elemento
       });
   }
+
 
   inicializarForm(videogame: Videogame) {
 
@@ -111,9 +113,10 @@ export class VideogameDetalleComponent implements OnInit {
     this.videogameForm.controls['mode'].setValue(videogame.mode);
     this.videogameForm.controls['engineId'].setValue(videogame.engineId); 
     this.videogameForm.controls['developmentStudioIds'].setValue(videogame.developmentStudioIds); 
-    this.videogameForm.controls['genreIds'].setValue(videogame.genreIds); 
+    this.videogameForm.controls['genreIds'].setValue(videogame.genreIds);
     
   }
+
 
   onFormSubmit():void {
     console.log(this.videogameForm.getRawValue())
@@ -139,6 +142,24 @@ export class VideogameDetalleComponent implements OnInit {
         .subscribe(() => this.goBack());
       
     }
+  }  
+
+  setImgPath(event:any){
+    
+    this.videogameForm.controls['imgPath'].setValue(this.transformPath(event.dbPath)); // Como event lo recogemos en la API como un objeto, tenemos que acceder a la propiedad dbPath, es por eso que no le pasamos a la funcion transformPath() solo el event, sino event.dbPath .
+
+    this.img = this.videogameForm.controls['imgPath'].value;
   }
+
+  transformPath(path:any){
+
+    let modifyString = "https://localhost:44338/"+ path?.toString().replace(/\\/g,'/');
+
+    return modifyString;
+
+  }
+
+
+  
 
 }

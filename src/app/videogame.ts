@@ -5,5 +5,6 @@ export interface Videogame {
     mode: string;
     engineId: number;
     developmentStudioIds: number;
-    genreIds: number;    
+    genreIds: number;
+    imgPath: string;    
 }

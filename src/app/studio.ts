@@ -3,4 +3,5 @@ export interface Studio {
     name: string;
     employees: number;
     foundation_Date: Date;
+    imgPath: string;
 }
